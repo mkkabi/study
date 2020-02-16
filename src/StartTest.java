@@ -84,13 +84,11 @@ class StartTest {
 
     @Test
     public void testing_multiplication_should_throw_IllegalArgumentException(){
-//        exception
         Assertions.assertThrows(IllegalArgumentException.class, ()->start.multiplication());
     }
 
     private static Stream<Arguments> testMultiplicationArguments() {
         return Stream.of(
-//                Arguments.arguments(new int[]{}, new IllegalArgumentException()),
                 Arguments.arguments(new int[]{1}, 1),
                 Arguments.arguments(new int[]{3, 7, 2}, 42),
                 Arguments.arguments(new int[]{-5, 2, 4}, -40),
@@ -98,9 +96,6 @@ class StartTest {
         );
     }
     
-    
-    
-
     @ParameterizedTest
     @MethodSource("argumentsSourceForAdditionTest")
     public <T extends Comparable> void bubbleSortTest(List<T> inputList, List<T> expected) {
