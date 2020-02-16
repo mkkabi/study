@@ -7,6 +7,29 @@ public class Start {
         System.out.println("Running");
 
     }
+    
+    /**
+    HOMEWORK
+    */
+    
+    public static <T extends Comparable> List<T> bubbleSortArrayList(List<T> inputList) {
+        int n = inputList.size();
+        for(int i =0; i<n-1; i++){
+            for (int j = 0; j < n-i-1; j++) {
+                if((inputList.get(j).compareTo(inputList.get(j+1))) > 0){
+                    T temp = inputList.get(j);
+                    inputList.set(j, inputList.get(j+1));
+                    inputList.set(j+1, temp);
+                }
+            }
+        }
+        return inputList;
+    }
+	
+	
+	
+	
+    
 
     // 59 60 61  74 75 76  89 90 91  -55  128 35 67 83 94
     public int convert(int grade) {
