@@ -9,6 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
@@ -96,14 +104,14 @@ class StartTest {
     @ParameterizedTest
     @MethodSource("argumentsSourceForAdditionTest")
     public <T extends Comparable> void bubbleSortTest(List<T> inputList, List<T> expected) {
-        List<T> result = Temp.bubbleSortArrayList(inputList);
+        List<T> result = Start.bubbleSortArrayList(inputList);
         assertEquals(expected, result);
     }
     
     
     static Stream<Arguments> argumentsSourceForAdditionTest() throws FileNotFoundException {
 
-        FileReader ff = new FileReader(new File("D:\\andy\\Projects\\PA\\app\\src\\test\\java\\com\\mkkabi\\personalaccountant\\temp\\unsortedStrings"));
+        FileReader ff = new FileReader(new File("src/unsortedStrings"));
         BufferedReader reader = new BufferedReader(ff);
         List<String> list = reader.lines().collect(Collectors.toList());
         List<String> sotredList = new ArrayList<>(list);
