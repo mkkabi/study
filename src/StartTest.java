@@ -89,6 +89,33 @@ class StartTest {
                 Arguments.arguments(new int[]{-5, 2, 4, 0}, 0)
         );
     }
+    
+    
+    
+
+    @ParameterizedTest
+    @MethodSource("argumentsSourceForAdditionTest")
+    public <T extends Comparable> void bubbleSortTest(List<T> inputList, List<T> expected) {
+        List<T> result = Temp.bubbleSortArrayList(inputList);
+        assertEquals(expected, result);
+    }
+    
+    
+    static Stream<Arguments> argumentsSourceForAdditionTest() throws FileNotFoundException {
+
+        FileReader ff = new FileReader(new File("D:\\andy\\Projects\\PA\\app\\src\\test\\java\\com\\mkkabi\\personalaccountant\\temp\\unsortedStrings"));
+        BufferedReader reader = new BufferedReader(ff);
+        List<String> list = reader.lines().collect(Collectors.toList());
+        List<String> sotredList = new ArrayList<>(list);
+        sotredList.sort(String::compareTo);
+
+        return Stream.of(
+                Arguments.arguments(list, sotredList),
+                Arguments.arguments(Arrays.asList("asdf", "ssfg", "", "zzzasdf", "qwerqw", "asdfgsa"), Arrays.asList("", "asdf", "asdfgsa", "qwerqw", "ssfg", "zzzasdf")),
+                Arguments.arguments(Arrays.asList("asdf", "ssfg", "zzzasdf", "0", "qwerqw", "asdfgsa"), Arrays.asList("0", "asdf", "asdfgsa", "qwerqw", "ssfg", "zzzasdf")),
+                Arguments.arguments(Arrays.asList("asdf", "ssfg", "zzzasdf", "-654", "qwerqw", "999", "asdfgsa"), Arrays.asList("-654", "999", "asdf", "asdfgsa", "qwerqw", "ssfg", "zzzasdf"))
+        );
+    }
 
 
 }
