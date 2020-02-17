@@ -1,3 +1,5 @@
+package main;
+
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -7,29 +9,7 @@ public class Start {
         System.out.println("Running");
 
     }
-    
-    /**
-    HOMEWORK
-    */
-    
-    public static <T extends Comparable> List<T> bubbleSortArrayList(List<T> inputList) {
-        int n = inputList.size();
-        for(int i =0; i<n-1; i++){
-            for (int j = 0; j < n-i-1; j++) {
-                if((inputList.get(j).compareTo(inputList.get(j+1))) > 0){
-                    T temp = inputList.get(j);
-                    inputList.set(j, inputList.get(j+1));
-                    inputList.set(j+1, temp);
-                }
-            }
-        }
-        return inputList;
-    }
-	
-	
-	
-	
-    
+
 
     // 59 60 61  74 75 76  89 90 91  -55  128 35 67 83 94
     public int convert(int grade) {
@@ -40,7 +20,7 @@ public class Start {
             result = 3;
         } else if (grade < 90) {
             result = 4;
-        } else if (grade > 89) {
+        } else {
             result = 5;
         }
         return result;
@@ -58,12 +38,10 @@ public class Start {
     }
 
 
-
-
     public int multiplication(int... mnogiteli) throws IllegalArgumentException {
         if (mnogiteli.length == 0) {
             throw new IllegalArgumentException("invalid parameters length");
-        }else if (mnogiteli.length == 1) {
+        } else if (mnogiteli.length == 1) {
             return mnogiteli[0];
         }
 
