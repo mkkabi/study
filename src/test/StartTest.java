@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class StartTest {
@@ -76,8 +77,10 @@ class StartTest {
 
     @Test
     public void testing_multiplication_should_throw_IllegalArgumentException() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> start.multiplication());
+        assertThrows(IllegalArgumentException.class, () -> start.multiplication());
     }
+
+
 
     private static Stream<Arguments> testMultiplicationArguments() {
         return Stream.of(

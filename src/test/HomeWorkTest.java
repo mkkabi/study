@@ -2,6 +2,7 @@ package test;
 
 import main.HomeWork;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -16,14 +17,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class HomeWorkTest {
     public static HomeWork homeWork;
-
-    /**
-     * test sorting with no arguments
-     */
 
     @BeforeAll
     public static void setup() {
@@ -46,9 +43,14 @@ class HomeWorkTest {
         assertEquals(expected, result);
     }
 
+    @Test
+    public void selectionSortTestShouldReturnIllegalArgumentException(){
+        assertThrows(IllegalArgumentException.class, ()->homeWork.selectionSort(null));
+    }
+
     static Stream<Arguments> argumentsSourceForSortTest() {
         return Stream.of(
-                Arguments.arguments(getFileAsList("src/unsortedStrings"),
+                Arguments.arguments(getFileAsList("resources/src/unsortedStrings"),
                         getFileAsList("src/unsortedStrings").stream().sorted(String::compareTo).collect(Collectors.toList())),
                 Arguments.arguments(Arrays.asList(""), Arrays.asList("")),
                 Arguments.arguments(Arrays.asList("asdf", "ssfg", "", "zzzasdf", "qwerqw", "asdfgsa"), Arrays.asList("", "asdf", "asdfgsa", "qwerqw", "ssfg", "zzzasdf")),
@@ -64,7 +66,7 @@ class HomeWorkTest {
         // текстовый файл "src/listOfTextFiles", содержит в себе список файлов для тестирования,
         // добавляем содержимого каждого файла из списка в виде
         // List<String> в переменную argList  и затем возвращаем ее в виде потока
-        getFileAsList("src/listOfTextFiles").forEach(s -> {
+        getFileAsList("src/resources/listOfTextFiles").forEach(s -> {
             argList.add(Arguments.arguments(getFileAsList(s), getFileAsList(s).parallelStream().sorted(String::compareTo).collect(Collectors.toList())));
         });
 
