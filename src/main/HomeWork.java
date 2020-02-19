@@ -6,20 +6,6 @@ import java.util.List;
 
 public class HomeWork {
 
-
-    public static int multiplication(int... mnogiteli) throws IllegalArgumentException {
-        // Если не было введено ни одного параметра, выбрасывается исключение
-        if (mnogiteli.length == 0) {
-            throw new IllegalArgumentException("invalid parameters length");
-        } else if (mnogiteli.length == 1) {
-            return mnogiteli[0];
-        }
-
-        int result[] = {1};
-        Arrays.stream(mnogiteli).forEach(i -> result[0] *= i);
-        return result[0];
-    }
-
     public <T extends Comparable<? super T>> List<T> bubbleSortArrayList(List<T> inputList) {
         if (inputList.size() <= 1) {
             return inputList;

@@ -1,11 +1,15 @@
 package test;
 
+import jdk.jfr.Description;
 import main.HomeWork;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.params.provider.*;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ArgumentsProvider;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -27,7 +31,8 @@ class HomeWorkTest {
         homeWork = new HomeWork();
     }
 
-
+    @Description("description annotation")
+    @DisplayName("Display name annotation")
     @ParameterizedTest
     @MethodSource("streamOfArgumentsArrayListFromFiles")
     public <T extends Comparable<? super T>> void bubbleSortTestShouldReturnSortedArrayListofComparables(
@@ -44,18 +49,19 @@ class HomeWorkTest {
     }
 
     @Test
-    public void selectionSortTestShouldReturnIllegalArgumentException(){
-        assertThrows(IllegalArgumentException.class, ()->homeWork.selectionSort(null));
+    public void selectionSortTestShouldReturnIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> homeWork.selectionSort(null));
     }
 
     static Stream<Arguments> argumentsSourceForSortTest() {
         return Stream.of(
-                Arguments.arguments(getFileAsList("resources/src/unsortedStrings"),
-                        getFileAsList("src/unsortedStrings").stream().sorted(String::compareTo).collect(Collectors.toList())),
+
                 Arguments.arguments(Arrays.asList(""), Arrays.asList("")),
                 Arguments.arguments(Arrays.asList("asdf", "ssfg", "", "zzzasdf", "qwerqw", "asdfgsa"), Arrays.asList("", "asdf", "asdfgsa", "qwerqw", "ssfg", "zzzasdf")),
                 Arguments.arguments(Arrays.asList("asdf", "ssfg", "zzzasdf", "0", "qwerqw", "asdfgsa"), Arrays.asList("0", "asdf", "asdfgsa", "qwerqw", "ssfg", "zzzasdf")),
-                Arguments.arguments(Arrays.asList("asdf", "ssfg", "zzzasdf", "-654", "qwerqw", "999", "asdfgsa"), Arrays.asList("-654", "999", "asdf", "asdfgsa", "qwerqw", "ssfg", "zzzasdf"))
+                Arguments.arguments(Arrays.asList("asdf", "ssfg", "zzzasdf", "-654", "qwerqw", "999", "asdfgsa"), Arrays.asList("-654", "999", "asdf", "asdfgsa", "qwerqw", "ssfg", "zzzasdf")),
+                Arguments.arguments(getFileAsList("resources/src/unsortedStrings"),
+                        getFileAsList("src/unsortedStrings").stream().sorted(String::compareTo).collect(Collectors.toList()))
         );
     }
 

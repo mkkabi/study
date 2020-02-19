@@ -5,16 +5,10 @@ import java.util.stream.Stream;
 
 public class Start {
 
-    public static void main(String[] args) {
-        System.out.println("Running");
-
-    }
-
-
     // 59 60 61  74 75 76  89 90 91  -55  128 35 67 83 94
     public int convert(int grade) {
         int result = 0;
-        if (grade <= 60) {
+        if (grade < 60) {
             result = 2;
         } else if (grade < 75) {
             result = 3;
