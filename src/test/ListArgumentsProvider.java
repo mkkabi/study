@@ -25,8 +25,6 @@ public class ListArgumentsProvider implements ArgumentsProvider {
     static Stream<Arguments> streamOfArgumentsArrayListFromFiles() {
         // небольшой эксперимент с внешними ресурсами для тестирования в целях повторения потоков
         // текстовый файл "src/resources/listOfTextFiles", содержит в себе список файлов для тестирования,
-        // правда, очень сомневаюсь что такое будет использоваться на практике, для этого метода неплохо было бы соорудить
-        // парочку тестов для проверки того, насколько правильно он возвращает значения. Но все работает правильно, проверял
 
         return getFileAsList("src/resources/listOfTextFiles").stream().map((line) -> {
             // проходим по каждой строчке файла listOfTextFiles и возвращаем поток аргументов
