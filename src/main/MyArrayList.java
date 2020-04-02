@@ -5,12 +5,12 @@ import java.util.Collection;
 import java.util.Iterator;
 
 public  class MyArrayList<T> extends AbstractCollection<T> {
-    private final int size;
+    private int size;
     T[] arr;
 
     public MyArrayList( Collection<T> collection) {
         this.size = collection.size();
-        arr = new [size];
+//        arr = new [size];
     }
 
 
